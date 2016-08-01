@@ -1,0 +1,45 @@
+﻿@model TaskManagerDTO.Entities.TicketDTO
+
+@{
+    ViewBag.Title = "Удалить задачу";
+    Layout = "~/Views/Shared/_TaskManagerMasterPage.cshtml";
+}
+
+<h3>Вы действительно хотите удалить задачу?</h3>
+
+    <div class="span5 span5-spec">
+        <hr/>
+        <dl  class="dl-horizontal marged">
+
+            <dt>@Html.DisplayName("Название")</dt>
+            <dd>@Html.DisplayFor(model => model.Title)</dd>
+
+            <dt>@Html.DisplayName("Дата выполнения")</dt>
+            <dd>@Html.DisplayFor(model => model.Date)</dd>
+
+            <dt>@Html.DisplayName("Категория")</dt>
+            <dd>@Html.DisplayFor(model => model.Category.Title)</dd>
+
+            <dt>@Html.DisplayName("Исполнитель")</dt>
+            <dd>@Html.DisplayFor(model => model.User.Login)</dd>
+
+            <dt>@Html.DisplayName("Статус")</dt>
+            <dd>@Html.DisplayFor(model => model.Status.Title)</dd>
+
+            <dt>@Html.DisplayName("Описание")</dt>
+            <dd>@Html.DisplayFor(model => model.Description)</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default"/> |
+                @Html.ActionLink("Назад", "Index")
+            </div>
+        }
+    </div>
+
+
+

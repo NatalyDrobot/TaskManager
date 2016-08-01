@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TaskManagerDTO.Entities.CategoryDTO>
+@{
+    Layout = null;
+}
+
+<div>
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    <i class="icon-filter"></i>
+                    @Html.ActionLink(@item.Title, "FilterTicketsByCategory", "Home", new {id = @item.CategoryId}, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

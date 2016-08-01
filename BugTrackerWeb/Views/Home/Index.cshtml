@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_TaskManagerMasterPage.cshtml";
+}
+
+@model IEnumerable<TaskManagerDTO.Entities.TicketDTO>
+
+<div style="float: left;">
+    <div class="span1 span-spec">
+        <a href="@Url.Action("CreateEntry","home")" class="btn btn-primary" title="Добавить новую задачу">
+            <i class="icon-file icon-white"></i>
+            <span><strong>Добавить</strong></span>
+        </a>
+    </div>
+</div>
+
+<div style="height: 50px;"></div>
+<!-- Вывод списка задач -->
+<div class="span5 span5-spec">
+    <table class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Категория</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Исполнитель</th>
+                <th>Статус</th>
+                <th> </th>
+            </tr>
+        </thead>
+
+        @if (Model.Any())
+        {
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Date</td>
+                    <td>@item.Category.Title</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.User.Login </td>
+                    <td>@item.Status.Title</td>
+                    <td>
+                        <div style="float: left;">
+                            <a href="@Url.Action("editEntry","home", new {id=@item.TicketId}, null)" class="btn btn-primary" title="Редактировать">
+                                <i class="icon-pencil icon-white"></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td> 
+                        <div style="float:right;">
+                            <a href="@Url.Action("deleteEntry","home", new {id=@item.TicketId}, null)" class="btn btn-primary" title="Удалить">
+                                <i class="icon-trash icon-white"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        }
+
+    </table>
+</div>
+

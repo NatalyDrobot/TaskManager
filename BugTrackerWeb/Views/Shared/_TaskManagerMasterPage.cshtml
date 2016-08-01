@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Task Manager  @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="@Url.Content("~/Content/assets/css/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/assets/css/bootstrap-responsive.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet">
+
+    <link rel="shortcut icon" href="Content/favicon.ico">
+</head>
+
+<body>
+    <div class="navbar-wrapper">
+        <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+        <div class="container">
+
+            <div class="navbar navbar-inverse">
+                <div class="navbar-inner">
+                    
+                    <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="/" title="На главную">
+                        <img src="/Content/themes/base/images/logo.png">
+                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="nav-collapse collapse">
+                            <div class="pull-right">
+                                <ul class="nav pull-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Добро пожаловать, @User.Identity.Name <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="@Url.Action("ProfileUser", "Home")"><i class="icon-cog"></i> Профайл</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="@Url.Action("Logoff", "Account")"><i class="icon-off"></i> Выйти</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/.nav-collapse -->
+                    }
+                </div><!-- /.navbar-inner -->
+            </div><!-- /.navbar -->
+
+        </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+
+    <div style="height: 90px;"></div>
+
+<div class="container marketing">
+
+    @if (ViewBag.SidebarVisible == null)
+    {
+        @Html.Partial("_leftSidebar")
+    }
+    else
+    {
+        if (ViewBag.SidebarVisible)
+        {
+            @Html.Partial("_leftSidebar")
+        }
+    }
+       
+    @RenderBody()
+
+</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    @Scripts.Render("/Content/assets/js/jquery.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-transition.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-alert.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-modal.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-dropdown.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-scrollspy.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-tab.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-tooltip.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-popover.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-button.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-collapse.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-carousel.js")
+    @Scripts.Render("/Content/assets/js/bootstrap-typeahead.js")
+    @Scripts.Render("/Content/assets/js/holder/holder.js")
+
+
+
+</body>
+</html>
+

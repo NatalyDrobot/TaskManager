@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<div style="float:left; width:230px;">
+<div class="sidebar-nav">
+	<div class="well" style="width:225px; padding: 8px 0;">
+		<ul class="nav nav-list"> 
+		    <li class="nav-header">Менеждер задач</li>
+		    <li>
+                <p> <b><i class="icon-comment"></i> @Html.ActionLink(" Список всех задач", "Index", "Home")</b></p>
+		    </li>
+		    <li>
+                <div><i class="icon-comment"></i> @Html.ActionLink(" Открытые задачи", "StatusTickets", "Home", new { id = 1 }, null)</div>
+		    </li>
+		    <li >
+                <div><i class="icon-comment"></i> @Html.ActionLink(" Выполненные задачи", "StatusTickets", "Home", new { id = 2 }, null)</div>
+		    </li>
+		    <li class="divider"></li>
+		    <li>
+                <div><i class="icon-time"></i> @Html.ActionLink(" На сегодня", "FilterTicketsByDate", "Home", new { id = FilterParam.today}, null)</div>
+		    </li>
+		    <li>
+                <div><i class="icon-time"></i> @Html.ActionLink(" На завтра", "FilterTicketsByDate", "Home", new { id = FilterParam.tomorrow}, null)</div>
+		    </li>
+		    <li>
+                <div><i class="icon-time"></i> @Html.ActionLink(" На неделю", "FilterTicketsByDate", "Home", new { id = FilterParam.week}, null)</div>
+		    </li>
+            <li class="divider"></li>
+		    <li class="nav-header">
+                <div>
+                    Категории
+                    <a href="#" title="Добавить новую категорию"><i class="icon-plus"></i></a>
+                </div>
+		    </li>
+		    @{ Html.RenderAction("GetCategories", "Home"); }
+
+		    @* @Html.Partial("ListCategories", "ViewBag.Categories")*@
+            @*@{Html.RenderPartial("~/Views/Home/ListCategories.cshtml");}*@
+		    @*@{Html.RenderAction("ListCategories", "Home"); }*@
+		    ...
+		    @*<li><a href="#" title="Добавить новую категорию"><i class="icon-plus"></i> Добавить</a></li>*@
+		</ul>
+	</div>
+</div>
+</div>

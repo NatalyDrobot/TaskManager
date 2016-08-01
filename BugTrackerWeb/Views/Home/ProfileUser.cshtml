@@ -1,0 +1,41 @@
+﻿@model TaskManagerDTO.Entities.UserDTO
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_TaskManagerMasterPage.cshtml";
+}
+
+<div class="span5 span5-spec">
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal marged">
+
+        <dt>@Html.DisplayName("Логин")</dt>
+        <dd>@Html.DisplayFor(model => model.Login)</dd>
+
+        <dt>@Html.DisplayName("Пароль")</dt>
+        <dd>@Html.DisplayFor(model => model.Password)</dd>
+
+        <dt>@Html.DisplayName("Email")</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>@Html.DisplayName("Имя")</dt>
+        <dd>@Html.DisplayFor(model => model.FirstName)</dd>
+
+        <dt>@Html.DisplayName("Фамилия")</dt>
+        <dd>@Html.DisplayFor(model => model.LastName)</dd>
+
+    </dl>
+
+    <p>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                @*<input type="submit" value="Удалить" class="btn btn-default"/> |*@
+                @*@Html.ActionLink("Edit", "Edit", new {  id = Model.UserId  }) |*@
+                @Html.ActionLink("Назад", "Index")
+            </div>
+        }
+    </p>
+</div>

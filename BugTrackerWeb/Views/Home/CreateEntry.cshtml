@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_TaskManagerMasterPage.cshtml";   
+}
+
+@using(Html.BeginForm("CreateEntry", "Home", FormMethod.Post, new {@class="well span8"}))
+{
+    <div class="row">
+        <div class="span3">
+            <label>Название</label>
+			<input type="text" class="span3" placeholder="Введите заголовок задачи" name="Title">
+			<label>Дата выполнения</label>
+			<input type="text" class="span3" placeholder="Дата регистрации" name="Date" value="@DateTime.Now.Date">
+			<label>Категория</label>
+			<select id="category" name="CategoryId" class="span3">
+				<option value="na" selected="">Выбрать...</option>
+                @foreach (var c in ViewBag.Categories)
+                {
+                    <option value="@c.CategoryId">@c.Title</option>
+                }
+				
+			</select>
+			<label>Статус</label>
+			<select id="status" name="StatusId" class="span3" >
+				<option value="na" selected="">Выбрать...</option>
+                @foreach (var c in ViewBag.Statuses)
+                {
+                    if (@c.Title == "Open")
+                     {
+                         <option value="@c.StatusId" selected>@c.Title</option>
+                     }
+                     else
+                     {
+                         <option value="@c.StatusId">@c.Title</option>
+                     }
+                }				
+			</select>
+			<label>Исполнитель</label>
+			<select id="user" name="UserId" class="span3">
+				<option value="na" selected="">Выбрать...</option>
+                @foreach (var c in ViewBag.Users)
+                {
+                    <option value="@c.UserId">@c.FirstName @c.LastName</option>
+                }
+			</select>			
+		</div>
+		<div class="span5">
+			<label>Описание</label>
+			<textarea name="description" id="description" class="input-xlarge span5" rows="10"></textarea>
+		</div>
+	
+		<button type="submit" class="btn btn-primary pull-right">Отправить</button>
+	</div>
+}
+
